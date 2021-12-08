@@ -1,10 +1,14 @@
-import React from 'react'
+import React from 'react';
+
+import MainLayout from '../layout/MainLayout';
 
 const Login = () => {
     return (
-        <div>
-            
-        </div>
+        <MainLayout title="Login">
+            <div className = "c-Login">
+                test
+            </div>
+        </MainLayout>
     )
 }
 

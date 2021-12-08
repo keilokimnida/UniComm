@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, BrowserRouter as Router, Routes as Switch, Navigate } from 'react-router-dom';
+import { Route, BrowserRouter as Router, Routes as Switch, Navigate, Outlet } from 'react-router-dom';
 
 import Login from './pages/Login';
 import Chats from './pages/Chats';
@@ -9,26 +9,22 @@ import { getToken } from './utils/localStorageUtils';
 
 
 // Guard to check if user has token
-const authGuard = (Component) => (props) => {
+const AuthGuard = () => {
     const token = getToken();
-
-    if (!token) {
-        return (<Navigate to="/logged-out" {...props} />);
-    } else {
-        return (<Component {...props} />);
-    }
+    return token ? <Outlet /> : <Navigate replace to="/logged-out" />;
 };
 
 const Routes = () => {
     return (
         <Router>
         <Switch>
-            <Route path ="/login" render={() => <Login />}/>
-            <Route path="/">
-                <Navigate to="/chats" />
+            <Route path ="/login" element={<Login />}/>
+            <Route path="/" element={<Navigate replace to="/chats"/>}/>
+            <Route path = "/chats" element = {<AuthGuard/>} >
+                <Route path = "" element={<Chats />} />
             </Route>
-            <Route path = "/chats" render={(props) => authGuard(Chats)(props)} />
-            <Route path = "/dev/sandbox" render={() => <Sandbox/>} />
+            <Route path = "/logged-out" element={<Sandbox/>} />
+            <Route path = "/dev/sandbox" element={<Sandbox/>} />
         </Switch>
     </Router>
     )
