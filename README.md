@@ -11,6 +11,7 @@ Pet Project for testing out socket.io and chat application features
 - Push Notification
 - Delete message
 - Delete account
+- Spam Detection
 
 # Tech Stack
 - React
