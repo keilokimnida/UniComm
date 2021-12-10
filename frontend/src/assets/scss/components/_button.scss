@@ -12,10 +12,24 @@
     -ms-user-select: none;
     -o-user-select: none;
     user-select: none;
+    cursor: pointer;
 
     &--primary-ocean {
         color: white;
         background-color: $primary-ocean;
+    }
+
+    &:hover {
+        opacity: 0.8;
+    }
+
+    &:active {
+        opacity: 0.7;
+    }
+    
+    &:disabled {
+        opacity: 0.7;
+        cursor: not-allowed;
     }
 
 }

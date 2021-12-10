@@ -1,22 +1,22 @@
-.c-Login {
+.c-Create-account {
     width: 100%;
     height: calc(100vh - 60px);
     display: flex;
     justify-content: center;
     align-items: center;
-    .l-Login__Card {
+    .l-Create-account__Card {
         background-color: white;
         min-width: 400px;
         padding: 40px 0;
         border-radius: 5px;
-        .c-Login__Card {
+        .c-Create-account__Card {
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
             width: 75%;
             margin: auto;
-            .c-Login__Inputs {
+            .c-Create-account__Inputs {
                 display: flex;
                 flex-direction: column;
                 width: 100%;

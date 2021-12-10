@@ -13,10 +13,10 @@ const Login = () => {
                         <h1>Login</h1>
                         <div className="c-Login__Inputs">
                             <input type="text" placeholder="Username/Email" />
-                            <input type="text" placeholder="Password" />
+                            <input type="password" placeholder="Password" />
                         </div>
                         <button type="button" className="c-Btn c-Btn--primary-ocean">Login</button>
-                        <NavLink to="/create-account">Create Account</NavLink>
+                        <NavLink to="/create-account">Go to Create Account</NavLink>
                     </div>
                 </div>
             </div>

@@ -2,6 +2,7 @@ import React from 'react';
 import { Route, BrowserRouter as Router, Routes as Switch, Navigate, Outlet } from 'react-router-dom';
 
 import Login from './pages/Login';
+import CreateAccount from './pages/CreateAccount';
 import Chats from './pages/Chats';
 import Sandbox from './pages/Sandbox';
 
@@ -19,6 +20,7 @@ const Routes = () => {
         <Router>
         <Switch>
             <Route path ="/login" element={<Login />}/>
+            <Route path ="/create-account" element={<CreateAccount />}/>
             <Route path="/" element={<Navigate replace to="/chats"/>}/>
             <Route path = "/chats" element = {<AuthGuard/>} >
                 <Route path = "" element={<Chats />} />
