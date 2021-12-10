@@ -8,7 +8,7 @@ const { Passwords } = require("../schemas/Passwords");
 
 module.exports.clientLogin = async (req, res) => {
     try {
-        const { identifier, password } = req.body.values;
+        const { identifier, password } = req.body;
         const account = await Accounts.findOne({
             where: { 
                 [Op.or]: [

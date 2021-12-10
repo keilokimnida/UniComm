@@ -10,13 +10,13 @@ import { saveUserToken } from '../utils/localStorageUtils';
 const Login = () => {
     const navigate = useNavigate();
     // State declarations
-    const [inputFields, setInputFields] = useState({
+    const [inputValues, setInputValues] = useState({
         identifier: "",
         password: ""
     })
 
     const handleChangeText = (event) => {
-        setInputFields((prevState) => ({
+        setInputValues((prevState) => ({
             ...prevState,
             [event.target.name]: event.target.value
         }));
@@ -26,8 +26,8 @@ const Login = () => {
         event.preventDefault();
         try {
             const res = await axios.post(`${APP_CONFIG.baseUrl}/login`, {
-                identifer: inputFields.identifier,
-                password: inputFields.password
+                identifier: inputValues.identifier,
+                password: inputValues.password
             });
 
             const data = res.data;
@@ -48,8 +48,8 @@ const Login = () => {
                     <div className="c-Login__Card">
                         <h1>Login</h1>
                         <div className="c-Login__Inputs">
-                            <input value={inputFields.identifier} type="text" placeholder="Username/Email" name="identifier" onChange={(event) => handleChangeText(event)}/>
-                            <input value={inputFields.password} type="password" placeholder="Password" name="password" onChange={(event) => handleChangeText(event)}/>
+                            <input value={inputValues.identifier} type="text" placeholder="Username/Email" name="identifier" onChange={(event) => handleChangeText(event)}/>
+                            <input value={inputValues.password} type="password" placeholder="Password" name="password" onChange={(event) => handleChangeText(event)}/>
                         </div>
                         <button type="submit" className="c-Btn c-Btn--primary-ocean" onClick={(event) => handleLogin(event)}>Login</button>
                         <NavLink to="/create-account">Go to Create Account</NavLink>
