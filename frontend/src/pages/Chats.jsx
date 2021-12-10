@@ -1,10 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import * as AiIcons from 'react-icons/ai';
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from 'react-icons/fa';
 import { IconContext } from 'react-icons';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useNavigate } from 'react-router-dom';
+import jwt_decode from "jwt-decode";
 
 import MainLayout from '../layout/MainLayout';
 import ChatWelcome from '../components/ChatWelcome';
@@ -13,10 +15,52 @@ import ProfileIcon from '../components/ProfileIcon';
 import FriendListBox from '../components/FriendListBox';
 import ENUMS from '../config/enums';
 
-const Chats = () => {
+import { getToken } from '../utils/localStorageUtils';
+import APP_CONFIG from '../config/appConfig';
 
+const Chats = () => {
+    const navigate = useNavigate();
+    const token = getToken();
+    let accountID;
+    if (token) {
+        const decodedToken = jwt_decode(token);
+        accountID = decodedToken.account_id;
+    }
     // State declarations
     const [selectedChatUser, setSelectedChatUser] = useState(null);
+    const [accountInfo, setAccountInfo] = useState(null);
+
+    useEffect(() => {
+        let componentMounted = true;
+        (async () => {
+            try {
+                // Get product information
+                const res = await axios.get(`${APP_CONFIG.baseUrl}/account/${accountID}`, {
+                  headers: {
+                    'Authorization': `Bearer ${token}`
+                  }
+                });
+                console.log(res);
+                if (componentMounted) {
+                    const data = res.data;
+                    setAccountInfo(() => ({
+                        username: data.username,
+                        email: data.email,
+                        pfp_type: data.pfp_type
+                    }));
+                }
+              } catch (error) {
+                console.log(error);
+                const errCode = error.response.status;
+                if (errCode === 401) {
+                  navigate("/login");
+                }
+              }
+        })()
+        return (() => {
+            componentMounted = false;
+          });
+    }, []);
 
     return (
         <MainLayout title="Chats">
@@ -48,7 +92,7 @@ const Chats = () => {
                         <div className="c-Card__Nav c-Nav">
                             <div className="c-Nav__Profile">
                                 <ProfileIcon />
-                                <h2>@keilokimnida</h2>
+                                <h2>@{accountInfo?.username ? accountInfo.username : ""}</h2>
                             </div>
                             <div className="c-Nav__Items">
                                 <NavLink to="/chats">

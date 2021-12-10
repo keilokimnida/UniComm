@@ -16,7 +16,7 @@ import { getToken } from './utils/localStorageUtils';
 // Guard to check if user has token
 const AuthGuard = () => {
     const token = getToken();
-    return token ? <Outlet /> : <Navigate replace to="/logged-out" />;
+    return token ? <Outlet /> : <Navigate replace to="/login" />;
 };
 
 const Routes = () => {
@@ -38,8 +38,7 @@ const Routes = () => {
             <Route path = "/settings" element = {<AuthGuard/>} >
                 <Route path = "" element={<Settings />} />
             </Route>
-            <Route path = "/logged-out" element={<Sandbox/>} />
-            <Route path = "/dev/sandbox" element={<Sandbox/>} />
+            <Route path = "/dev" element={<Sandbox/>} />
         </Switch>
     </Router>
     )
