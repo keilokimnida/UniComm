@@ -5,4 +5,12 @@
 @import "base/typography";
 @import "base/reset";
 
+// Components styles
+@import "components/button";
 
+// Layout styles
+@import "layout/header";
+@import "layout/main-layout";
+
+// Pages styles
+@import "pages/login";

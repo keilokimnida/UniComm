@@ -1,0 +1,9 @@
+.c-Main {
+    min-height: 100vh;
+    background-color: #E5E5E5;
+
+    .c-Main_Content {
+        min-height: calc(100vh - 60px);
+        
+    }
+}

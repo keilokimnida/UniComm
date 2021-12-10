@@ -1,10 +1,15 @@
-import React from 'react'
+import React from 'react';
+
+import MainLayout from '../layout/MainLayout';
 
 const Chats = () => {
     return (
-        <div>
-            <h1>testingg yo mei yo</h1>
-        </div>
+        <MainLayout title="Chats">
+            <div className="c-Chats">
+                
+            </div>
+        </MainLayout>
+
     )
 }
 

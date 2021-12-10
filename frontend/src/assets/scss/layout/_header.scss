@@ -1,0 +1,19 @@
+.c-Header {
+    height: 60px;
+    background-color: white;
+    width: 100;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .l-Header__Logo {
+        width: 70%;
+        .c-Header__Logo {
+            width: 100%;
+            display: flex;
+            justify-content: flex-start;
+            img {
+                height: 25px;
+            }
+        }
+    }
+}

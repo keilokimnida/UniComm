@@ -1,0 +1,21 @@
+.c-Btn {
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    font-weight: bold;
+    padding: 9px 23px;
+    height: fit-content;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    &--primary-ocean {
+        color: white;
+        background-color: $primary-ocean;
+    }
+
+}
