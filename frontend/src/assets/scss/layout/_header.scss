@@ -5,15 +5,31 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    -webkit-backdrop-filter: saturate(180%) blur(20px);
+    backdrop-filter: saturate(180%) blur(20px);
+    background-color: rgba(255, 255, 255, 0.72);
+    position: sticky;
+    top: 0;
+    left: 0;
+    z-index: 999;
     .l-Header__Logo {
         width: 70%;
         .c-Header__Logo {
             width: 100%;
             display: flex;
             justify-content: flex-start;
-            img {
-                height: 25px;
+            a {
+                &:hover {
+                    opacity: 0.8;
+                }
+                &:active {
+                    opacity: 0.7;
+                }
+                img {
+                    height: 25px;
+                }
             }
+
         }
     }
 }

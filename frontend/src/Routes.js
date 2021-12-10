@@ -4,6 +4,7 @@ import { Route, BrowserRouter as Router, Routes as Switch, Navigate, Outlet } fr
 import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Chats from './pages/Chats';
+import Friends from './pages/Friends';
 import Sandbox from './pages/Sandbox';
 
 import { getToken } from './utils/localStorageUtils';
@@ -24,6 +25,9 @@ const Routes = () => {
             <Route path="/" element={<Navigate replace to="/chats"/>}/>
             <Route path = "/chats" element = {<AuthGuard/>} >
                 <Route path = "" element={<Chats />} />
+            </Route>
+            <Route path = "/friends" element = {<AuthGuard/>} >
+                <Route path = "" element={<Friends />} />
             </Route>
             <Route path = "/logged-out" element={<Sandbox/>} />
             <Route path = "/dev/sandbox" element={<Sandbox/>} />

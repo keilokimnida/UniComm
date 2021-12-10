@@ -1,0 +1,20 @@
+.l-Chat-message {
+    padding: 10px 0;
+    .c-Chat-message {
+        border-radius: 5px;
+        padding: 10px 20px;
+        max-width: 375px;
+        display: flex;
+    
+        &--me {
+            background-color: $primary-mul;
+            color: white;
+            margin-left: auto;
+        }
+    
+        &--friend {
+            background-color: #EFEFEF;
+            margin-right: auto;
+        }
+    }
+}

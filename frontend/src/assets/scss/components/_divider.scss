@@ -1,0 +1,11 @@
+.c-Divider {
+    &--vertical {
+        border-right: 1px solid #C4C4C4;
+        display: flex;
+    }
+
+    &--horizontal {
+        border-top: 1px solid #C4C4C4;
+        display: flex;
+    }
+}

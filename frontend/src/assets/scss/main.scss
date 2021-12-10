@@ -7,11 +7,19 @@
 
 // Components styles
 @import "components/button";
+@import "components/chat-message";
+@import "components/chat-room";
+@import "components/chat-welcome";
+@import "components/divider";
+@import "components/friend-list-box";
+@import "components/profile-icon";
 
 // Layout styles
 @import "layout/header";
 @import "layout/main-layout";
 
 // Pages styles
+@import "pages/chats";
 @import "pages/create-account";
+@import "pages/friends";
 @import "pages/login";
