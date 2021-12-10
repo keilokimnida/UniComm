@@ -11,6 +11,7 @@ import ChatWelcome from '../components/ChatWelcome';
 import ChatRoom from '../components/ChatRoom';
 import ProfileIcon from '../components/ProfileIcon';
 import FriendListBox from '../components/FriendListBox';
+import ENUMS from '../config/enums';
 
 const Chats = () => {
 
@@ -36,37 +37,7 @@ const Chats = () => {
                             <div className="c-Friends__List">
                                 <FriendListBox
                                     username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                /><FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
-                                <FriendListBox
-                                    username="dlwlrma"
+                                    type={ENUMS.friendListMode.CHAT}
                                     setSelectedChatUser={setSelectedChatUser}
                                 />
                             </div>

@@ -9,6 +9,7 @@ import { NavLink } from 'react-router-dom';
 import MainLayout from '../layout/MainLayout';
 import FriendListBox from '../components/FriendListBox';
 import ProfileIcon from '../components/ProfileIcon';
+import ENUMS from '../config/enums';
 
 const Friends = () => {
     return (
@@ -29,6 +30,7 @@ const Friends = () => {
                             <div className="c-Friends__List">
                                 <FriendListBox
                                     username="dlwlrma"
+                                    type={ENUMS.friendListMode.REMOVE}
                                 />
                             </div>
                         </div>
@@ -70,7 +72,10 @@ const Friends = () => {
                             <h2>Incoming Friend Requests</h2>
                             <span className="c-Divider c-Divider--horizontal"></span>
                             <div className="c-Friend-requests__List">
-
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
                             </div>
                         </div>
                         {/* Search for friends */}

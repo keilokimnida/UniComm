@@ -137,6 +137,11 @@
                     font-size: $font-medium;
                     margin: 20px 0;
                 }
+
+                &__List {
+                    width: 90%;
+                    margin: auto;
+                }
             }
             .c-Search-new-friends {
                 flex: 1;

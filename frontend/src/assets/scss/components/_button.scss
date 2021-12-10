@@ -19,6 +19,21 @@
         background-color: $primary-ocean;
     }
 
+    &--empty-danger {
+        color: red;
+        background-color: transparent;
+    }
+
+    &--empty-primary-ocean {
+        color: $primary-ocean;
+        background-color: transparent;
+    }
+
+    &--empty-black {
+        color: black;
+        background-color: transparent;
+    }
+
     &:hover {
         opacity: 0.8;
     }
