@@ -44,7 +44,7 @@ Accounts.hasMany(Passwords, {
 
 Passwords.belongsTo(Accounts, {
     foreignKey: "fk_account_id",
-    as: "account"
+    as: "account_passwords"
 });
 
 module.exports = { Passwords };

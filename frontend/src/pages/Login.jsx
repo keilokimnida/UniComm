@@ -1,25 +1,61 @@
-import React from 'react';
-import { NavLink } from 'react-router-dom';
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import { toast } from "react-toastify";
+import axios from 'axios';
 
 import MainLayout from '../layout/MainLayout';
+import APP_CONFIG from '../config/appConfig';
+import { saveUserToken } from '../utils/localStorageUtils';
 
 const Login = () => {
+    const navigate = useNavigate();
+    // State declarations
+    const [inputFields, setInputFields] = useState({
+        identifier: "",
+        password: ""
+    })
+
+    const handleChangeText = (event) => {
+        setInputFields((prevState) => ({
+            ...prevState,
+            [event.target.name]: event.target.value
+        }));
+    };
+
+    const handleLogin = async (event) => {
+        event.preventDefault();
+        try {
+            const res = await axios.post(`${APP_CONFIG.baseUrl}/login`, {
+                identifer: inputFields.identifier,
+                password: inputFields.password
+            });
+
+            const data = res.data;
+            saveUserToken(data.token);
+            navigate('/chats');
+        }
+        catch (error) {
+            console.log(error);
+            toast.error("Someting went wrong!");
+        };
+    };
+
     return (
         <MainLayout title="Login">
-            <div className="c-Login">
+            <form className="c-Login">
                 {/* Login Card */}
                 <div className="l-Login__Card">
                     <div className="c-Login__Card">
                         <h1>Login</h1>
                         <div className="c-Login__Inputs">
-                            <input type="text" placeholder="Username/Email" />
-                            <input type="password" placeholder="Password" />
+                            <input value={inputFields.identifier} type="text" placeholder="Username/Email" name="identifier" onChange={(event) => handleChangeText(event)}/>
+                            <input value={inputFields.password} type="password" placeholder="Password" name="password" onChange={(event) => handleChangeText(event)}/>
                         </div>
-                        <button type="button" className="c-Btn c-Btn--primary-ocean">Login</button>
+                        <button type="submit" className="c-Btn c-Btn--primary-ocean" onClick={(event) => handleLogin(event)}>Login</button>
                         <NavLink to="/create-account">Go to Create Account</NavLink>
                     </div>
                 </div>
-            </div>
+            </form>
         </MainLayout>
     )
 }

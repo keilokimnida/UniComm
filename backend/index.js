@@ -1,3 +1,12 @@
+const { Accounts } = require("./src/schemas/Accounts");
+const { Passwords } = require("./src/schemas/Passwords");
+const { Friendships } = require("./src/schemas/Friendships");
+const { Messages } = require("./src/schemas/Messages");
+const { Room_Members } = require("./src/schemas/Room_Members");
+const { Rooms } = require("./src/schemas/Rooms");
+
+
+
 const express = require('express');
 const cors = require('cors');
 const chalk = require('chalk');
@@ -18,7 +27,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1', routes);
 
 // setting this to true will drop all tables and seed new data
-const reset = true;
+const reset = false;
 
 // sync sequelize with sql db
 // immediately invoked function necessary to run await async code
