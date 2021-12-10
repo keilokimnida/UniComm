@@ -1,0 +1,108 @@
+.c-Settings {
+    width: 100%;
+    height: calc(100vh - 60px);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    .c-Card {
+        background-color: white;
+        border-radius: 5px;
+        display: flex;
+        flex-direction: column;
+        width: 400px;
+        padding-top: 20px;
+
+        h1 {
+            font-size: $font-medium;
+            text-align: center;
+            margin: 10px auto;
+            width: 90%;
+            font-weight: bolder;
+        }
+
+        h2 {
+            font-size: $font-medium;
+            margin: 10px auto;
+            width: 90%;
+        }
+
+        h3 {
+            font-size: $font-small;
+            font-weight: normal;
+            margin: 10px auto;
+            width: 90%;
+        }
+
+        p {
+            width: 90%;
+            margin: 0 auto;
+        }
+
+        .c-Settings__Input {
+            width: 90%;
+            margin: 0 auto;
+            input {
+                border: none;
+                width: calc(100% - 26px);
+                outline: none;
+                padding: 10px 13px;
+                padding-right: 20px;
+                background-color: #ECECEC;
+                border-radius: 0 5px 5px 0;
+    
+                &::placeholder {
+                    color: #9D9D9D;
+                    font-weight: bold;
+                }
+            }
+        }
+        
+        .c-Settings__Button {
+            width: 90%;
+            margin: 0 auto;
+            button {
+                padding-left: 0;
+            }
+        }
+
+        .c-Nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 90%;
+            margin: auto;
+            padding: 20px 0;
+
+            &__Profile {
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+
+                h2 {
+                    font-size: $font-small;
+                    padding-left: 10px;
+                }
+            }
+
+            &__Items {
+                padding-left: 30px;
+                width: 100%;
+                display: flex;
+                justify-content: space-around;
+
+                a {
+                    cursor: pointer;
+
+                    &:hover {
+                        opacity: 0.8;
+                    }
+
+                    &:active {
+                        opacity: 0.7;
+                    }
+                }
+            }
+        }
+    }
+}

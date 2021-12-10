@@ -76,17 +76,38 @@ const Friends = () => {
                                     username="jennierubyjane"
                                     type={ENUMS.friendListMode.REQUEST}
                                 />
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                  <FriendListBox
+                                    username="jennierubyjane"
+                                    type={ENUMS.friendListMode.REQUEST}
+                                />
+                                
                             </div>
                         </div>
-                        {/* Search for friends */}
-                        <div className="c-Search-new-friends">
-                            <h2>Search For Friends</h2>
-                            <div className="c-Search-new-friends__Input">
-                                <IconContext.Provider value={{ color: "#9D9D9D", size: "21px" }}>
-                                    <AiIcons.AiOutlineSearch className="c-Search__Icon" />
-                                </IconContext.Provider>
-                                <input type="text" placeholder="Enter username" />
-                            </div>
+                        <span className = "c-Divider c-Divider--horizontal"></span>
+                        {/* Expand network */}
+                        <div className="c-Expand-network">
+                            <h2>Expand your network!</h2>
+                            <NavLink to = "/friends/add" className="c-Btn c-Btn--primary-ocean">Find Friends</NavLink>
                         </div>
                     </div>
                 </div>

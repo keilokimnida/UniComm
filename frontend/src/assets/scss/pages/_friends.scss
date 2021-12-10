@@ -130,8 +130,27 @@
             min-width: 700px;
             display: flex;
             flex-direction: column;
+            justify-content: space-between;
+
             .c-Friend-requests {
-                flex: 1;
+                max-height: calc(100% - 142.8px);
+
+                // Scrollbar styling
+                // Reference to https://codepen.io/devstreak/pen/dMYgeO
+                // and https://www.w3schools.com/howto/tryit.asp?filename=tryhow_css_custom_scrollbar
+                ::-webkit-scrollbar-track {
+                    background-color: transparent;
+                }
+
+                ::-webkit-scrollbar {
+                    width: 4px;
+                    background-color: transparent;
+                }
+
+                ::-webkit-scrollbar-thumb {
+                    background-color: #b3b3b3;
+                }
+
                 h2 {
                     text-align: center;
                     font-size: $font-medium;
@@ -140,44 +159,28 @@
 
                 &__List {
                     width: 90%;
+                    max-height: calc(100% - 85.6px);
+                    display: flex;
+                    flex-direction: column;
                     margin: auto;
+                    overflow-y: auto;
                 }
             }
-            .c-Search-new-friends {
-                flex: 1;
+
+            .c-Expand-network {
+                display: flex;
+                flex-direction: column;
+                margin: 20px 0;
+
                 h2 {
                     text-align: center;
                     font-size: $font-medium;
-                    margin: 20px 0;
+                    margin-bottom: 20px;
                 }
-                &__Input {
-                    display: flex;
-                    width: 90%;
+
+                a {
                     margin: auto;
-                    flex-direction: row;
-                    justify-content: center;
-                    align-items: center;
-                    border-radius: 5px;
-                    background-color: #ECECEC;
-
-                    svg {
-                        margin-left: 20px
-                    }
-
-                    input {
-                        border: none;
-                        width: calc(100% - 26px);
-                        outline: none;
-                        padding: 10px 13px;
-                        padding-right: 20px;
-                        background-color: #ECECEC;
-                        border-radius: 0 5px 5px 0;
-
-                        &::placeholder {
-                            color: #9D9D9D;
-                            font-weight: bold;
-                        }
-                    }
+                    text-align: center;
                 }
             }
         }

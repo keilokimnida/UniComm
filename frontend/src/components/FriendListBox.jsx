@@ -53,7 +53,7 @@ const FriendListBox = ({ username, setSelectedChatUser, type }) => {
                     <p>@{username}</p>
                 </div>
                 <div className="c-Friend-list-box__Functions">
-                    <button type="button" className="c-Btn c-Btn--empty-danger">Remove</button>
+                    <button type="button" className="c-Btn c-Btn--primary-ocean">Add</button>
                 </div>
             </div>
         );

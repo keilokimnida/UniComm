@@ -5,9 +5,12 @@ import Login from './pages/Login';
 import CreateAccount from './pages/CreateAccount';
 import Chats from './pages/Chats';
 import Friends from './pages/Friends';
+import AddFriends from './pages/AddFriends';
+import Settings from './pages/Settings';
 import Sandbox from './pages/Sandbox';
 
 import { getToken } from './utils/localStorageUtils';
+
 
 
 // Guard to check if user has token
@@ -28,6 +31,12 @@ const Routes = () => {
             </Route>
             <Route path = "/friends" element = {<AuthGuard/>} >
                 <Route path = "" element={<Friends />} />
+            </Route>
+            <Route path = "/friends/add" element = {<AuthGuard/>} >
+                <Route path = "" element={<AddFriends />} />
+            </Route>
+            <Route path = "/settings" element = {<AuthGuard/>} >
+                <Route path = "" element={<Settings />} />
             </Route>
             <Route path = "/logged-out" element={<Sandbox/>} />
             <Route path = "/dev/sandbox" element={<Sandbox/>} />

@@ -19,6 +19,10 @@ const Accounts = db.define(
             allowNull: false,
             unique: true
         },
+        pfp_type: {
+            type: DataTypes.INTEGER.UNSIGNED,
+            allowNull: false,
+        }
     },
     {
         tableName: "accounts",
