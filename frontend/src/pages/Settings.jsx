@@ -1,17 +1,60 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import * as BsIcons from 'react-icons/bs';
 import * as IoIcons from 'react-icons/io5';
 import * as FaIcons from 'react-icons/fa';
 import { IconContext } from 'react-icons';
 import { NavLink, useNavigate } from 'react-router-dom';
-import MainLayout from '../layout/MainLayout';
-
-import ProfileIcon from '../components/ProfileIcon';
-import { clearLocalStorage } from '../utils/localStorageUtils';
 import { toast } from 'react-toastify';
+import jwt_decode from "jwt-decode";
+
+import MainLayout from '../layout/MainLayout';
+import ProfileIcon from '../components/ProfileIcon';
+import { clearLocalStorage, getToken } from '../utils/localStorageUtils';
+import APP_CONFIG from '../config/appConfig';
 
 const Settings = () => {
     const navigate = useNavigate();
+    const token = getToken();
+    let accountID;
+    if (token) {
+        const decodedToken = jwt_decode(token);
+        accountID = decodedToken.account_id;
+    }
+
+    // State declarations
+    const [account, setAccount] = useState(null);
+
+    useEffect(() => {
+        let componentMounted = true;
+
+        (async () => {
+            try {
+                // Get account information
+                const accRes = await axios.get(`${APP_CONFIG.baseUrl}/account/${accountID}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+                if (componentMounted) {
+                    const accData = accRes.data;
+                    setAccount(() => ({
+                        username: accData.username,
+                        email: accData.email,
+                        pfp_type: accData.pfp_type
+                    }));
+                }
+
+            }
+            catch (error) {
+                console.log(error);
+            };
+        })();
+
+        return (() => {
+            componentMounted = false;
+        });
+    }, []);
 
     const handleLogout = () => {
         clearLocalStorage();
@@ -28,11 +71,11 @@ const Settings = () => {
                     <h2>Account settings</h2>
                     <h3>Email</h3>
                     <div className="c-Settings__Input">
-                        <input type="email" disabled value="keilokimnida@krocks.com" />
+                        <input type="email" disabled value={account?.email ? account.email : "Error"} />
                     </div>
                     <h3>Username</h3>
                     <div className="c-Settings__Input">
-                        <input type="text" disabled value="keilokimnida" />
+                        <input type="text" disabled value={account?.username ? account.username : "Error"} />
                     </div>
 
                     {/* Other settings */}
@@ -56,7 +99,7 @@ const Settings = () => {
                     <div className="c-Card__Nav c-Nav">
                         <div className="c-Nav__Profile">
                             <ProfileIcon />
-                            <h2>@keilokimnida</h2>
+                            <h2>@{account?.username ? account.username : ""}</h2>
                         </div>
                         <div className="c-Nav__Items">
                             <NavLink to="/chats">

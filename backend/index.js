@@ -1,6 +1,7 @@
 const { Accounts } = require("./src/schemas/Accounts");
 const { Passwords } = require("./src/schemas/Passwords");
 const { Friendships } = require("./src/schemas/Friendships");
+const { Friend_Invitations } = require("./src/schemas/Friend_Invitations");
 const { Messages } = require("./src/schemas/Messages");
 const { Room_Members } = require("./src/schemas/Room_Members");
 const { Rooms } = require("./src/schemas/Rooms");

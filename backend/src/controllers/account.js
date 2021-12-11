@@ -1,6 +1,6 @@
 const bcrypt = require("bcryptjs");
 
-const { findAccountByID, createAccount } = require('../models/account');
+const { findAccountByID, findAccountsByUsername, createAccount } = require('../models/account');
 
 // Get account by ID
 module.exports.findAccountByID = async (req, res) => {
@@ -22,7 +22,31 @@ module.exports.findAccountByID = async (req, res) => {
         console.log(error);
         return res.status(500).send("Error in controller > account.js > findAccountByID ! " + error);
     }
-}
+};
+
+// Get account by username
+module.exports.findAccountByUsername = async (req, res) => {
+    try {
+        const { decoded } = res.locals.auth;
+        const accountID = decoded.account_id;
+
+        const username = req.params.username;
+        if (username === "" || username === null) return res.status(400).json({
+            message: "Invalid parameter \"username\""
+        });
+
+        const accounts = await findAccountsByUsername(username, accountID);
+        if (!accounts) return res.status(404).json({
+            message: `\"accounts\" ${accounts} not found`
+        });
+
+        return res.status(200).send(accounts);
+
+    } catch (error) {
+        console.log(error);
+        return res.status(500).send("Error in controller > account.js > findAccountByUsername ! " + error);
+    }
+};
 
 // Create account
 module.exports.createAccount = async (req, res) => {

@@ -83,6 +83,11 @@
                     width: 100%;
                     height: 100%;
                     overflow-y: auto;
+
+                    .c-List__Empty {
+                        text-align: center;
+                        margin-top: 20px;
+                    }
                 }
             }
 

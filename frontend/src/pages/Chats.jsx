@@ -28,38 +28,56 @@ const Chats = () => {
     }
     // State declarations
     const [selectedChatUser, setSelectedChatUser] = useState(null);
-    const [accountInfo, setAccountInfo] = useState(null);
+    const [account, setAccount] = useState(null);
+    const [chatRooms, setChatRooms] = useState(null);
 
     useEffect(() => {
         let componentMounted = true;
         (async () => {
             try {
-                // Get product information
-                const res = await axios.get(`${APP_CONFIG.baseUrl}/account/${accountID}`, {
-                  headers: {
-                    'Authorization': `Bearer ${token}`
-                  }
+                // Get account information
+                const accRes = await axios.get(`${APP_CONFIG.baseUrl}/account/${accountID}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
                 });
-                console.log(res);
+
+                // Find chat room by account id
+                const chatRoomRes = await axios.get(`${APP_CONFIG.baseUrl}/room/${accountID}`, {
+                    headers: {
+                        'Authorization': `Bearer ${token}`
+                    }
+                });
+
+                console.log(chatRoomRes);
                 if (componentMounted) {
-                    const data = res.data;
-                    setAccountInfo(() => ({
-                        username: data.username,
-                        email: data.email,
-                        pfp_type: data.pfp_type
+                    const accData = accRes.data;
+                    setAccount(() => ({
+                        username: accData.username,
+                        email: accData.email,
+                        pfp_type: accData.pfp_type
                     }));
+                    const chatRoomData = chatRoomRes.data;
+
+                    if (chatRoomData.length === 0) {
+                        setChatRooms(() => null);
+                    }
+                    else {
+                        setChatRooms(() => chatRoomData);
+                    }
+
                 }
-              } catch (error) {
+            } catch (error) {
                 console.log(error);
-                const errCode = error.response.status;
+                const errCode = error.response?.status;
                 if (errCode === 401) {
-                  navigate("/login");
+                    navigate("/login");
                 }
-              }
+            }
         })()
         return (() => {
             componentMounted = false;
-          });
+        });
     }, []);
 
     return (
@@ -79,11 +97,16 @@ const Chats = () => {
                             </div>
 
                             <div className="c-Friends__List">
-                                <FriendListBox
-                                    username="dlwlrma"
-                                    type={ENUMS.friendListMode.CHAT}
-                                    setSelectedChatUser={setSelectedChatUser}
-                                />
+                                {
+                                    chatRooms ?
+                                        <FriendListBox
+                                            username="dlwlrma"
+                                            type={ENUMS.friendListMode.CHAT}
+                                            setSelectedChatUser={setSelectedChatUser}
+                                        />
+                                        :
+                                        <p className = "c-List__Empty">No chats found!</p>
+                                }
                             </div>
                         </div>
                         {/* Divider */}
@@ -92,7 +115,7 @@ const Chats = () => {
                         <div className="c-Card__Nav c-Nav">
                             <div className="c-Nav__Profile">
                                 <ProfileIcon />
-                                <h2>@{accountInfo?.username ? accountInfo.username : ""}</h2>
+                                <h2>@{account?.username ? account.username : ""}</h2>
                             </div>
                             <div className="c-Nav__Items">
                                 <NavLink to="/chats">

@@ -40,22 +40,22 @@ const Messages = db.define(
 
 Accounts.hasMany(Messages, {
     foreignKey: "fk_sender_id",
-    as: "sender"
+    as: "messages"
 });
 
 Messages.belongsTo(Accounts, {
     foreignKey: "fk_sender_id",
-    as: "account_sender"
+    as: "sender"
 });
 
 Rooms.hasMany(Messages, {
     foreignKey: "fk_room_id",
-    as: "room"
+    as: "messages"
 });
 
 Messages.belongsTo(Rooms, {
     foreignKey: "fk_room_id",
-    as: "account_room"
+    as: "room"
 });
 
 module.exports = { Messages };

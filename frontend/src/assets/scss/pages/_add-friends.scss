@@ -68,6 +68,11 @@
                 width: 90%;
                 overflow-y: auto;
                 margin: 0 auto;
+
+                .c-List__Empty {
+                    text-align: center;
+                    margin-top: 20px;
+                }
             }
             &__Back {
                 width: 90%;

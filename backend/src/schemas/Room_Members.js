@@ -37,14 +37,16 @@ const Room_Members = db.define(
     }
 );
 
-Accounts.hasMany(Rooms, {
+Room_Members.hasMany(Rooms, {
     foreignKey: "fk_room_id",
-    as: "room"
+    as: "room",
+    constraints: false 
 });
 
-Rooms.belongsTo(Accounts, {
+Rooms.belongsTo(Room_Members, {
     foreignKey: "fk_room_id",
-    as: "account"
+    as: "room_member",
+    constraints: false 
 });
 
 Accounts.hasMany(Room_Members, {

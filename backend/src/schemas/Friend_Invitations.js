@@ -3,15 +3,15 @@ const db = require("../config/connection");
 
 const { Accounts } = require("./Accounts");
 
-const Friendships = db.define(
-    "Friendships",
+const Friend_Invitations = db.define(
+    "Friend_Invitations",
     {
-        friendship_id: {
+        invitation_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             primaryKey: true,
             autoIncrement: true
         },
-        fk_account_id_1: {
+        fk_requester_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             references: {
@@ -19,7 +19,7 @@ const Friendships = db.define(
                 key: "account_id"
             }
         },
-        fk_account_id_2: {
+        fk_addressee_id: {
             type: DataTypes.INTEGER.UNSIGNED,
             allowNull: false,
             references: {
@@ -29,7 +29,7 @@ const Friendships = db.define(
         }
     },
     {
-        tableName: "friendships",
+        tableName: "friend_invitations",
         timestamps: true,
         createdAt: "created_at",
         updatedAt: "updated_at",
@@ -38,24 +38,24 @@ const Friendships = db.define(
     }
 );
 
-module.exports = { Friendships };
+module.exports = { Friend_Invitations };
 
-Accounts.hasMany(Friendships, {
-    foreignKey: "fk_account_id_1",
-    as: "friendship_1"
+Accounts.hasMany(Friend_Invitations, {
+    foreignKey: "fk_requester_id",
+    as: "requester"
 });
 
-Friendships.belongsTo(Accounts, {
-    foreignKey: "fk_account_id_1",
-    as: "account_friend_1"
+Friend_Invitations.belongsTo(Accounts, {
+    foreignKey: "fk_requester_id",
+    as: "account_requester"
 });
 
-Accounts.hasMany(Friendships, {
-    foreignKey: "fk_account_id_2",
-    as: "friendship_2"
+Accounts.hasMany(Friend_Invitations, {
+    foreignKey: "fk_addressee_id",
+    as: "addressee"
 });
 
-Friendships.belongsTo(Accounts, {
-    foreignKey: "fk_account_id_2",
-    as: "account_friend_2"
+Friend_Invitations.belongsTo(Accounts, {
+    foreignKey: "fk_addressee_id",
+    as: "account_addressee"
 });
